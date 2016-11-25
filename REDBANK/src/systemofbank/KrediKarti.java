@@ -1,7 +1,7 @@
 package systemofbank;
 import java.util.ArrayList;
 public class KrediKarti extends Kart {
-	
+	private int musterinumarasi;
 	private double limit;
 	private double borc;
 	private int kartnumarasi;
@@ -9,11 +9,11 @@ public class KrediKarti extends Kart {
 	private ArrayList <Urun> urunler = new ArrayList<Urun>();
 //Constructor
 //*************************************************************************************************
-	public KrediKarti(){
-		
-	}
+//	public KrediKarti(int musterino){
+//		
+//	}
 	
-	public KrediKarti(double kredikartilimiti){
+	public KrediKarti(int musterino, double kredikartilimiti){
 		this.setLimit(kredikartilimiti);
 		this.setKartnumarasi((int)(Math.random()*Math.pow(10, 16)));
 		this.setMaxipuan(0);
@@ -67,7 +67,10 @@ public class KrediKarti extends Kart {
 	public ArrayList<Urun> getUrunler() {
 		return urunler;
 	}
-	
+	public void setMusterinumarasi(int musterinumarasi) {
+		this.musterinumarasi = musterinumarasi;
+	}
+
 	
 //sets
 //**************************************************************************************************
@@ -91,6 +94,9 @@ public class KrediKarti extends Kart {
 		this.urunler=Nsn;
 	}
 
+	public int getMusterinumarasi() {
+		return musterinumarasi;
+	}
 	
 
 

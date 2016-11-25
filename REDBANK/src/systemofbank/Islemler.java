@@ -15,6 +15,24 @@ public class Islemler {
 
 //Functions
 //***********************************************************************************************************
+	
+	public void vadeliMevduatHesabiAcma(Musteri musteri){
+		VadeliMevduatHesabi acilacakhesap = new VadeliMevduatHesabi(musteri.getMusterinumarasi());
+		musteri.addVadelimevduathesabi(acilacakhesap);
+	}
+	
+	public void bankaKartiTalebi(Musteri musteri, int hesapno){
+		BankaKarti talepedilenkart = new BankaKarti(musteri.hesapNumarasınaGoreHesapBelirleme(hesapno));
+		musteri.setBankakarti(talepedilenkart);
+		
+	}
+	
+	public void krediKartiTalebi(Musteri musteri,double limit){
+		KrediKarti talepedilenkredikarti = new KrediKarti(musteri.getMusterinumarasi(), limit);
+		musteri.setKredikarti(talepedilenkredikarti);
+		
+	}
+	
 	public void hesabaParaYatırma(Hesap hesap,double para){
 	double guncelbakiye=hesap.getHesaptakiparamiktari();
 	guncelbakiye+=para;
