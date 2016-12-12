@@ -1,89 +1,14 @@
 package systemofbank;
-import java.util.ArrayList;
-public class Islemler {
-	
-	private int isleminhesapno;
-	private ArrayList<IslemOzeti> yapilanislemler = new ArrayList<IslemOzeti>();
 
-//Constructors
-//***********************************************************************************************************
-	public Islemler(){
-		
-	}
-	public Islemler(int hesapno){
-		this.setIsleminhesapno(hesapno);
-	}
-
-//Functions
-//***********************************************************************************************************
+public abstract class Islemler {
 	
-	public void vadeliMevduatHesabiAcma(Musteri musteri){
-		VadeliMevduatHesabi acilacakhesap = new VadeliMevduatHesabi(musteri.getMusterinumarasi());
-		musteri.addHesaplar(acilacakhesap);
-	}
+	public abstract void vadeliMevduatHesabiAcma(Musteri musteri);
+	public abstract void vadesizMevduatHesabiAcma(Musteri musteri);
+	public abstract void bankaKartiTalebi(Musteri musteri, int hesapno);
+	public abstract void krediKartiTalebi(Musteri musteri,double limit);
+	public abstract void hesabaParaYatırma(Hesap hesap,double para);
+	public abstract void hesaptanParaCekme(Hesap hesap,double para);
+	public abstract void havale(Hesap alicihesabi,Hesap gonderenhesabi,double para);
+	public abstract Hesap hesapNumarasınaGoreHesapBelirleme(int hesapno);
 	
-	public void bankaKartiTalebi(Musteri musteri, int hesapno){
-		BankaKarti talepedilenkart = new BankaKarti(musteri.hesapNumarasınaGoreHesapBelirleme(hesapno));
-		musteri.addKartlar(talepedilenkart);
-		
-	}
-	
-	public void krediKartiTalebi(Musteri musteri,double limit){
-		KrediKarti talepedilenkredikarti = new KrediKarti(musteri.getMusterinumarasi(), limit);
-		musteri.addKartlar(talepedilenkredikarti);
-		
-	}
-	
-	public void hesabaParaYatırma(Hesap hesap,double para){
-	double guncelbakiye=hesap.getHesaptakiparamiktari();
-	guncelbakiye+=para;
-	hesap.setHesaptakiparamiktari(guncelbakiye);
-	System.out.printf("%.2f tl miktar hesabınıza yatırılmıştır. Hesabınızda %.2f tl vardır.\n",guncelbakiye,hesap.getHesaptakiparamiktari());
-	Tarih tarih =new Tarih();
-	IslemOzeti islem = new IslemOzeti("Hesaba para yatırma.", this.getIsleminhesapno(), tarih, hesap.getHesapnumarasi(),para);
-	this.addYapilanislemler(islem);
-	}
-
-	public void hesaptanParaCekme(Hesap hesap,double para){
-		double guncelbakiye=hesap.getHesaptakiparamiktari();
-		guncelbakiye-=para;
-		hesap.setHesaptakiparamiktari(guncelbakiye);
-		System.out.printf("%.2f tl miktar hesabınızdan çkilmştir. Hesabınızda %.2f tl vardır.\n",guncelbakiye,hesap.getHesaptakiparamiktari());
-		Tarih tarih =new Tarih();
-		IslemOzeti islem = new IslemOzeti("Hesaptan para çekme.", this.getIsleminhesapno(), tarih, hesap.getHesapnumarasi(),para);
-		this.addYapilanislemler(islem);
-		}
-
-	public void havale(Hesap alicihesabi,Hesap gonderenhesabi,double para){
-	double gonderenguncelbakiye = gonderenhesabi.getHesaptakiparamiktari();
-	gonderenguncelbakiye-=para;
-	gonderenhesabi.setHesaptakiparamiktari(gonderenguncelbakiye);
-	
-	double aliciguncelbakiye = alicihesabi.getHesaptakiparamiktari();
-	aliciguncelbakiye+=para;
-	alicihesabi.setHesaptakiparamiktari(aliciguncelbakiye);
-	
-	System.out.printf("%d numaralı hesapa %d numaralı hesabınızdan %.2f tl aktarılmıştır. Kartınız da %.2f tl vardır.\n",alicihesabi.getHesapnumarasi(),gonderenhesabi.getHesapnumarasi(),para,gonderenhesabi.getHesaptakiparamiktari());
-	Tarih tarih =new Tarih();
-	IslemOzeti islem = new IslemOzeti("Hesaba para havalesi.", this.getIsleminhesapno(),tarih,gonderenhesabi.getHesapnumarasi() ,para);
-	this.addYapilanislemler(islem);
-	}
-//gets
-//********************************************************************************************************************
-	public ArrayList<IslemOzeti> getYapilanislemler() {
-		return yapilanislemler;
-	}
-	public int getIsleminhesapno() {
-		return isleminhesapno;
-	}
-//sets
-//********************************************************************************************************************
-	public void addYapilanislemler(IslemOzeti yapilanislemler) {
-		this.yapilanislemler.add(yapilanislemler);
-	}
-
-	
-	public void setIsleminhesapno(int hesapno) {
-		this.isleminhesapno=hesapno;
-	}
 }

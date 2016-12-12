@@ -9,42 +9,17 @@ public class KrediKarti extends Kart {
 	private ArrayList <Urun> urunler = new ArrayList<Urun>();
 //Constructor
 //*************************************************************************************************
-//	public KrediKarti(int musterino){
-//		
-//	}
 	
 	public KrediKarti(int musterino, double kredikartilimiti){
 		this.setLimit(kredikartilimiti);
 		this.setKartnumarasi((int)(Math.random()*Math.pow(10, 16)));
 		this.setMaxipuan(0);
 		this.setUrunler(null);
-		
-	}
-	
-//Functions
-//*************************************************************************************************
-	
-	public void addUrun(Urun urun) {
-		this.urunler.add(urun);
-	}
-	
-	@Override
-	public void addMaxipuan(double fiyat) {
-		double totalpuan=this.getMaxipuan();
-		totalpuan+=fiyat/100;
-		this.setMaxipuan(totalpuan);
+		this.setBorc(0);
 		
 	}
 	
 
-	@Override
-	public void satinAlma(String firmaadi, double ödenecektutar, int taksitsayisi) {
-		
-		Urun yeniurun = new Urun(firmaadi,ödenecektutar,taksitsayisi);
-		this.addUrun(yeniurun);
-		
-		
-	}
 //gets
 //**************************************************************************************************
 
@@ -67,9 +42,11 @@ public class KrediKarti extends Kart {
 	public ArrayList<Urun> getUrunler() {
 		return urunler;
 	}
-	public void setMusterinumarasi(int musterinumarasi) {
-		this.musterinumarasi = musterinumarasi;
+	
+	public int getMusterinumarasi() {
+		return musterinumarasi;
 	}
+//**************************************************************************************************
 
 	
 //sets
@@ -93,12 +70,30 @@ public class KrediKarti extends Kart {
 	public void setUrunler(ArrayList<Urun> Nsn){
 		this.urunler=Nsn;
 	}
-
-	public int getMusterinumarasi() {
-		return musterinumarasi;
+	
+	public void setMusterinumarasi(int musterinumarasi) {
+		this.musterinumarasi = musterinumarasi;
+	}
+//***************************************************************************************************
+//Functions
+//**************************************************************************************************
+	
+	
+	public void addUrun(Urun urun) {
+		this.urunler.add(urun);
 	}
 	
-
-
+	@Override
+	public void addMaxipuan(double fiyat) {
+		double totalpuan=this.getMaxipuan();
+		totalpuan+=fiyat/100;
+		this.setMaxipuan(totalpuan);	
+	}
 	
+	@Override
+	public void satinAlma(String firmaadi, double ödenecektutar, int taksitsayisi) {
+	Urun yeniurun = new Urun(firmaadi,ödenecektutar,taksitsayisi);
+	this.addUrun(yeniurun);
+	}
+	//**************************************************************************************************
 }

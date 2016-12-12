@@ -13,6 +13,33 @@ public class BankaKarti extends Kart {
 		this.setMaxipuan(0);
 	}
 	
+//************************************************************************************************
+//gets
+//************************************************************************************************
+	
+	public int getKartnumarası() {
+		return kartnumarası;
+	}
+	public double getMaxipuan() {
+		return maxipuan;
+	}
+	public Hesap getKartinhesabi() {
+		return kartinhesabi;
+	}
+//************************************************************************************************
+//sets
+//************************************************************************************************
+
+	public void setKartnumarası(int kartnumarası) {
+		this.kartnumarası = kartnumarası;
+	}
+	public void setMaxipuan(double maxipuan) {
+		this.maxipuan = maxipuan;
+	}
+	public void setKartinhesabi(Hesap kartinhesabi) {
+		this.kartinhesabi = kartinhesabi;
+	}
+//**********************************************************************************************
 //Functions
 //*************************************************************************************************
 	
@@ -38,30 +65,4 @@ public class BankaKarti extends Kart {
 		
 		
 	}
-	
-//gets
-//*******************************************************************************************
-	
-	public int getKartnumarası() {
-		return kartnumarası;
-	}
-	public double getMaxipuan() {
-		return maxipuan;
-	}
-	public Hesap getKartinhesabi() {
-		return kartinhesabi;
-	}
-//sets
-//********************************************************************************************
-
-	public void setKartnumarası(int kartnumarası) {
-		this.kartnumarası = kartnumarası;
-	}
-	public void setMaxipuan(double maxipuan) {
-		this.maxipuan = maxipuan;
-	}
-	public void setKartinhesabi(Hesap kartinhesabi) {
-		this.kartinhesabi = kartinhesabi;
-	}
-
 }

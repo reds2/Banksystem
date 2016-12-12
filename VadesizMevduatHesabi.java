@@ -1,18 +1,18 @@
 package systemofbank;
 
-public class VadeliMevduatHesabi extends Hesap {
+public class VadesizMevduatHesabi extends Hesap {
 	
 	private double hesaptakiparamiktari;
 	private int hesapnumarasi;
 	private int musterinumarasi;
 	
 	
-	public VadeliMevduatHesabi(int musterino) {
+	public VadesizMevduatHesabi(int musterino) {
 		this.setHesapnumarasi((int)(Math.random()*Math.pow(10,11)));
 		this.setHesaptakiparamiktari(0);
 		this.setMusterinumarasi(musterino);
 	}
-	
+
 	@Override
 	public void kurHesabi(){
 		
